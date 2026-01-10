@@ -1,7 +1,7 @@
 using Microsoft.ML;
 using Schemas;
 
-namespace MLProject.Data
+namespace DataOperations
 {
     public static class DataService
     {
