@@ -8,7 +8,7 @@ namespace MLProject.Data
         /// <summary>
         /// Ingests data from CSV. Uses lazy loading via IDataView to optimize memory footprint.
         /// </summary>
-        public static IDataView LoadTrainingData(MLContext ml, string path)
+        public static IDataView LoadData(MLContext ml, string path)
         {
             if (!File.Exists(path))
                 throw new FileNotFoundException("Dataset file missing.", path);

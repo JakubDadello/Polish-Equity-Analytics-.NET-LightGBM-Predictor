@@ -332,6 +332,19 @@
         "build": {
           "buildTransitive/net8.0/_._": {}
         }
+      },
+      "PolishEquity.Analytics.Schemas/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Microsoft.ML": "5.0.0"
+        },
+        "compile": {
+          "bin/placeholder/PolishEquity.Analytics.Schemas.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PolishEquity.Analytics.Schemas.dll": {}
+        }
       }
     }
   },
@@ -596,12 +609,18 @@
         "system.numerics.tensors.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "PolishEquity.Analytics.Schemas/1.0.0": {
+      "type": "project",
+      "path": "../PolishEquity.Analytics.Schemas/PolishEquity.Analytics.Schemas.csproj",
+      "msbuildProject": "../PolishEquity.Analytics.Schemas/PolishEquity.Analytics.Schemas.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
       "Microsoft.ML >= 5.0.0",
-      "Microsoft.ML.LightGbm >= 5.0.0"
+      "Microsoft.ML.LightGbm >= 5.0.0",
+      "PolishEquity.Analytics.Schemas >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -636,7 +655,11 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Polish-Equity-Analytics-.NET-LightGBM-Predictor\\PolishEquity.Analytics.Schemas\\PolishEquity.Analytics.Schemas.csproj": {
+              "projectPath": "C:\\Polish-Equity-Analytics-.NET-LightGBM-Predictor\\PolishEquity.Analytics.Schemas\\PolishEquity.Analytics.Schemas.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
