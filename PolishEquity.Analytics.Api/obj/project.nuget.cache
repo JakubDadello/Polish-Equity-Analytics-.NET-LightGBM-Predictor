@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Tg7VQTrjowU=",
+  "success": true,
+  "projectFilePath": "C:\\Polish-Equity-Analytics-.NET-LightGBM-Predictor\\PolishEquity.Analytics.Api\\PolishEquity.Analytics.Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\kejdi\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.0\\microsoft.aspnetcore.openapi.10.0.0.nupkg.sha512",
+    "C:\\Users\\kejdi\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
