@@ -18,6 +18,11 @@ namespace Schemas
         [LoadColumn(5)] public string Sector { get; set; } = "";
         
         [LoadColumn(6)] public float Cumulation { get; set; }
+
+        // The target column we want to predict
+        [LoadColumn(7)]
+        [ColumnName("Label")]
+        public string InvestmentAssessment { get; set; } = "";
     }
 
     /// <summary>
