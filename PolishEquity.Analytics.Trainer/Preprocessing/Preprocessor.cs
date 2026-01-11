@@ -14,16 +14,12 @@ namespace PreprocessorPipeline
             // Must match the EXACT property names in your ModelInput class
             var numericColumns = new[] { "NetIncome", "NetCashFlow", "Roe", "Roa", "Ebitda", "Cumulation" };
 
-            return ml.Transforms
-                // 0. Convert text labels (low, medium, high) into numeric keys
-                // Essential for Multi-class classification algorithms
-                .Conversion.MapValueToKey(outputColumnName: "Label", inputColumnName: "Label")
+            return 
 
                 // 1. Group raw numbers into a single vector named 'numeric_vector'
-                .Append(ml.Transforms.Concatenate("numeric_vector", numericColumns))
-                
+                ml.Transforms.Concatenate("numeric_vector", numericColumns)
+        
                 // 2. Impute missing values (replace NULLs/NaNs with Mean)
-                // Input: numeric_vector -> Output: numeric_imputed
                 .Append(ml.Transforms.ReplaceMissingValues(
                     outputColumnName: "numeric_imputed", 
                     inputColumnName: "numeric_vector", 

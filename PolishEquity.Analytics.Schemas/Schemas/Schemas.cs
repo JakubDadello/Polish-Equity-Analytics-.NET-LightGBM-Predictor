@@ -8,19 +8,19 @@ namespace Schemas
     /// </summary>
     public class ModelInput 
     {
-        [LoadColumn(0)] public float NetIncome { get; set; }
-        [LoadColumn(1)] public float NetCashFlow { get; set; }
-        [LoadColumn(2)] public float Roe { get; set; }
-        [LoadColumn(3)] public float Roa { get; set; }
-        [LoadColumn(4)] public float Ebitda { get; set; }
+        [LoadColumn(2)] public float NetIncome { get; set; }
+        [LoadColumn(3)] public float NetCashFlow { get; set; }
+        [LoadColumn(4)] public float Roe { get; set; }
+        [LoadColumn(5)] public float Roa { get; set; }
+        [LoadColumn(6)] public float Ebitda { get; set; }
         
         // Categorical feature - requires OneHotEncoding or FeaturizeText in the pipeline
-        [LoadColumn(5)] public string Sector { get; set; } = "";
+        [LoadColumn(7)] public string Sector { get; set; } = "";
         
-        [LoadColumn(6)] public float Cumulation { get; set; }
+        [LoadColumn(8)] public float Cumulation { get; set; }
 
         // The target column we want to predict
-        [LoadColumn(7)]
+        [LoadColumn(9)]
         [ColumnName("Label")]
         public string InvestmentAssessment { get; set; } = "";
     }
@@ -32,9 +32,13 @@ namespace Schemas
     public class ModelOutput
     {
         // "Score" is the default for Regression, "PredictedLabel" for Classification
+        [ColumnName("Label")] 
+        public uint Label { get; set; }
+        
+        [ColumnName("Score")]
+        public float[] Score { get; set; } = Array.Empty<float>();
+
         [ColumnName("PredictedLabel")] 
         public string InvestmentAssessment { get; set; } = "";
-        
-        public float[] Score { get; set; } = Array.Empty<float>();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.ML;
 using DataOperations;     
-using Training;       
+using Training;     
+using Schemas; 
 
 class Program
 {
@@ -41,13 +42,16 @@ class Program
         Directory.CreateDirectory(Path.GetDirectoryName(stackingDataPath)!);
 
         // Select only the relevant output columns required by the Python Meta‑learner
-        var selectedColumns = ml.Transforms.SelectColumns("Label", "Score");
+        var selectedColumns = ml.Transforms.SelectColumns("Label", "Score", "PredictedLabel");
         var selectedData = selectedColumns.Fit(predictions).Transform(predictions);
+
+        var cleanEnumerable = ml.Data.CreateEnumerable<ModelOutput>(selectedData, reuseRowObject: false);
+        var cleanDataView = ml.Data.LoadFromEnumerable(cleanEnumerable);
 
         // Persist the filtered prediction dataset as a CSV file for downstream stacking
         using (var stream = new FileStream(stackingDataPath, FileMode.Create))
         {
-            ml.Data.SaveAsText(selectedData, stream, separatorChar: ',', headerRow: true);
+            ml.Data.SaveAsText(cleanDataView, stream, separatorChar: ',', headerRow: true);
         }
 
         Console.WriteLine($"Stacking input CSV saved to: {stackingDataPath}");
