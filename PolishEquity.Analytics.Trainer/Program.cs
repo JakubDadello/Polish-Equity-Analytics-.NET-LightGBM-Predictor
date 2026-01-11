@@ -40,10 +40,11 @@ class Program
         // 7. Save predictions to CSV
         Directory.CreateDirectory(Path.GetDirectoryName(stackingDataPath)!);
 
-        // Wybieramy tylko konkretne kolumny, żeby Python się nie pogubił
+        // Select only the relevant output columns required by the Python Meta‑learner
         var selectedColumns = ml.Transforms.SelectColumns("Label", "Score");
         var selectedData = selectedColumns.Fit(predictions).Transform(predictions);
 
+        // Persist the filtered prediction dataset as a CSV file for downstream stacking
         using (var stream = new FileStream(stackingDataPath, FileMode.Create))
         {
             ml.Data.SaveAsText(selectedData, stream, separatorChar: ',', headerRow: true);
