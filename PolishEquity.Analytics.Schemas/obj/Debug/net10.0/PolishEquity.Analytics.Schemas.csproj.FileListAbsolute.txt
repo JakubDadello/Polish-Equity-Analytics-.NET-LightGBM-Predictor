@@ -1,0 +1,13 @@
+C:\Polish-Equity-Analytics-.NET-LightGBM-Predictor\PolishEquity.Analytics.Schemas\bin\Debug\net10.0\PolishEquity.Analytics.Schemas.deps.json
+C:\Polish-Equity-Analytics-.NET-LightGBM-Predictor\PolishEquity.Analytics.Schemas\bin\Debug\net10.0\PolishEquity.Analytics.Schemas.dll
+C:\Polish-Equity-Analytics-.NET-LightGBM-Predictor\PolishEquity.Analytics.Schemas\bin\Debug\net10.0\PolishEquity.Analytics.Schemas.pdb
+C:\Polish-Equity-Analytics-.NET-LightGBM-Predictor\PolishEquity.Analytics.Schemas\obj\Debug\net10.0\PolishEquity.Analytics.Schemas.csproj.AssemblyReference.cache
+C:\Polish-Equity-Analytics-.NET-LightGBM-Predictor\PolishEquity.Analytics.Schemas\obj\Debug\net10.0\PolishEquity.Analytics.Schemas.GeneratedMSBuildEditorConfig.editorconfig
+C:\Polish-Equity-Analytics-.NET-LightGBM-Predictor\PolishEquity.Analytics.Schemas\obj\Debug\net10.0\PolishEquity.Analytics.Schemas.AssemblyInfoInputs.cache
+C:\Polish-Equity-Analytics-.NET-LightGBM-Predictor\PolishEquity.Analytics.Schemas\obj\Debug\net10.0\PolishEquity.Analytics.Schemas.AssemblyInfo.cs
+C:\Polish-Equity-Analytics-.NET-LightGBM-Predictor\PolishEquity.Analytics.Schemas\obj\Debug\net10.0\PolishEquity.Analytics.Schemas.csproj.CoreCompileInputs.cache
+C:\Polish-Equity-Analytics-.NET-LightGBM-Predictor\PolishEquity.Analytics.Schemas\obj\Debug\net10.0\PolishEquity.Analytics.Schemas.sourcelink.json
+C:\Polish-Equity-Analytics-.NET-LightGBM-Predictor\PolishEquity.Analytics.Schemas\obj\Debug\net10.0\PolishEquity.Analytics.Schemas.dll
+C:\Polish-Equity-Analytics-.NET-LightGBM-Predictor\PolishEquity.Analytics.Schemas\obj\Debug\net10.0\refint\PolishEquity.Analytics.Schemas.dll
+C:\Polish-Equity-Analytics-.NET-LightGBM-Predictor\PolishEquity.Analytics.Schemas\obj\Debug\net10.0\PolishEquity.Analytics.Schemas.pdb
+C:\Polish-Equity-Analytics-.NET-LightGBM-Predictor\PolishEquity.Analytics.Schemas\obj\Debug\net10.0\ref\PolishEquity.Analytics.Schemas.dll
