@@ -1,9 +1,6 @@
 ﻿using Microsoft.ML;
-using DataOperations; 
-using Schemas;        
+using DataOperations;     
 using Training;       
-using System;
-using System.IO;
 
 class Program
 {
@@ -42,10 +39,14 @@ class Program
 
         // 7. Save predictions to CSV
         Directory.CreateDirectory(Path.GetDirectoryName(stackingDataPath)!);
+
+        // Wybieramy tylko konkretne kolumny, żeby Python się nie pogubił
+        var selectedColumns = ml.Transforms.SelectColumns("Label", "Score");
+        var selectedData = selectedColumns.Fit(predictions).Transform(predictions);
+
         using (var stream = new FileStream(stackingDataPath, FileMode.Create))
         {
-            // ML.NET saves all columns including Raw Data, Label, and Scores
-            ml.Data.SaveAsText(predictions, stream, separatorChar: ',', headerRow: true);
+            ml.Data.SaveAsText(selectedData, stream, separatorChar: ',', headerRow: true);
         }
 
         Console.WriteLine($"Stacking input CSV saved to: {stackingDataPath}");
