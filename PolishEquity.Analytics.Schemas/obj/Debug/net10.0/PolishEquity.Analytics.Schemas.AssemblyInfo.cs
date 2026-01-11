@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PolishEquity.Analytics.Schemas")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d6c769cfee745b695cfb3539e197bdce8cb0d414")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b4c61900143d38b99b37f576902e802d51d12948")]
 [assembly: System.Reflection.AssemblyProductAttribute("PolishEquity.Analytics.Schemas")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PolishEquity.Analytics.Schemas")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
