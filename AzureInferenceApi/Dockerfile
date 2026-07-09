@@ -6,7 +6,7 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 COPY ["AzureInferenceApi/AzureInferenceApi.csproj", "AzureInferenceApi/"]
 COPY ["Schemas/Schemas.csproj", "Schemas/"]
-RUN dotnet restore "AzureInferenceApi/AzureInferenceApi.csproj"
+RUN dotnet restore "AzureInferenceApi/AzureInferenceApi.csproj" -c Release -o /app/build
 
 COPY . .
 WORKDIR "/src/AzureInferenceApi"
