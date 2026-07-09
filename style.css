@@ -1,0 +1,218 @@
+:root {
+    --primary: #06b6d4;         /* Cyan / Turquoise */
+    --primary-hover: #0891b2;   /* Darker Cyan */
+    --accent: #38bdf8;          /* Light Blue / Sky Blue */
+    --bg-dark: #0f172a;
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --text-main: #e2e8f0;
+}
+
+* {
+    box-sizing: border-box;
+    transition: all 0.25s ease;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Inter', system-ui, sans-serif;
+    padding: 20px;
+    gap: 20px;
+
+    /* Animated background with teal/blue tint */
+    background: linear-gradient(-45deg, #0f172a, #0f2d37, #115e59, #0f172a);
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease infinite;
+
+    line-height: 1.6;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* HEADER */
+.header {
+    text-align: center;
+    backdrop-filter: blur(20px);
+    background: var(--glass-bg);
+    padding: 20px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 900px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    margin: 0;
+    color: white;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    line-height: 1.3;
+}
+
+/* CONTAINER */
+.container {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    width: 100%;
+    max-width: 1000px;
+    gap: 20px;
+}
+
+/* CARD */
+.col {
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(20px);
+    background: var(--glass-bg);
+    padding: 25px;
+    border-radius: 16px;
+    flex: 1 1 400px; 
+    min-width: 300px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+
+    position: relative;
+    z-index: 1;
+}
+
+/* Fix: does not block clicks */
+.col::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background: linear-gradient(120deg, transparent, rgba(6, 182, 212, 0.2), transparent);
+    opacity: 0;
+    transition: 0.4s;
+
+    pointer-events: none; /* Crucial */
+}
+
+.col:hover::before {
+    opacity: 1;
+}
+
+.col:hover {
+    transform: translateY(-5px);
+}
+
+/* INPUTS */
+.upload-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 14px;
+    margin: 8px 0;
+    font-size: 15px;
+    background: rgba(255,255,255,0.05);
+    color: white;
+    line-height: 1.4;
+}
+
+.upload-icon {
+    align-items: center;
+}
+
+input::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.3);
+    background: rgba(255,255,255,0.1);
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px;
+    box-shadow: 0 8px 20px rgba(6, 182, 212, 0.4);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(6, 182, 212, 0.6);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* PROGRESS */
+.progress-row {
+    margin-bottom: 20px;
+    color: rgba(255,255,255,0.7);
+}
+
+.progress-bar {
+    height: 20px; 
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 100px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #06b6d4, #38bdf8); 
+    width: 0;
+    border-radius: 100px;
+    transition: width 1s ease;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 11px;
+    font-weight: 600;
+    color: white;
+    white-space: nowrap;
+
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8); 
+}
+
+/* OUTPUT */
+.output_data {
+    width: 100%;
+    max-width: 1000px;
+    background: rgba(0,0,0,0.4);
+    color: #e2e8f0;
+    padding: 15px;
+    border-radius: 10px;
+    overflow-x: auto;
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .col {
+        padding: 20px;
+        flex: 1 1 100%;
+    }
+}
