@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockExchangeEA.Trainer", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockExchangeEA.Api", "StockExchangeEA.Api\StockExchangeEA.Api.csproj", "{161C369D-0789-4702-98BD-39C84C09299C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureInferenceApi", "AzureInferenceApi\AzureInferenceApi.csproj", "{7279C243-C987-4561-8AC6-967E106A81FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{161C369D-0789-4702-98BD-39C84C09299C}.Release|x64.Build.0 = Release|Any CPU
 		{161C369D-0789-4702-98BD-39C84C09299C}.Release|x86.ActiveCfg = Release|Any CPU
 		{161C369D-0789-4702-98BD-39C84C09299C}.Release|x86.Build.0 = Release|Any CPU
+		{7279C243-C987-4561-8AC6-967E106A81FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7279C243-C987-4561-8AC6-967E106A81FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7279C243-C987-4561-8AC6-967E106A81FF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7279C243-C987-4561-8AC6-967E106A81FF}.Debug|x64.Build.0 = Debug|Any CPU
+		{7279C243-C987-4561-8AC6-967E106A81FF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7279C243-C987-4561-8AC6-967E106A81FF}.Debug|x86.Build.0 = Debug|Any CPU
+		{7279C243-C987-4561-8AC6-967E106A81FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7279C243-C987-4561-8AC6-967E106A81FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7279C243-C987-4561-8AC6-967E106A81FF}.Release|x64.ActiveCfg = Release|Any CPU
+		{7279C243-C987-4561-8AC6-967E106A81FF}.Release|x64.Build.0 = Release|Any CPU
+		{7279C243-C987-4561-8AC6-967E106A81FF}.Release|x86.ActiveCfg = Release|Any CPU
+		{7279C243-C987-4561-8AC6-967E106A81FF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
