@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Exchange Equity Analytics</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+</head>
+
+<body>
+
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAADcdq4kLCHqw0bSY"></div>
+
+<header class="header">
+    <h2> Automated Investment Assessment Engine</h2>
+</header>
+
+<section class="container">
+
+    <!-- INPUTS -->
+    <div class="col">
+
+
+        <div class="upload-box" id="drop-zone"> 
+
+            <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            
+            <p> Drag & drop your financial report file here </p>
+            <span> or </span>
+
+            <input type="file" id="file-input" accept=".txt,.pdf,.json" hidden>
+            <button type="button" id="btn-browse" onclick="document.getElementById('file-input').click()">
+                Browse file
+            </button>
+            <div id="file-name" class="file-name-display"></div>
+        </div>
+
+    </div>
+
+    <!-- RESULTS -->
+    <div class="col">
+
+        <div class="progress-row">
+            <span class="label">High</span>
+            <div class="progress-bar">
+                <div class="progress-fill" id="fill-high">0%</div>
+            </div>
+        </div>
+
+        <div class="progress-row">
+            <span class="label">Middle</span>
+            <div class="progress-bar">
+                <div class="progress-fill" id="fill-middle">0%</div>
+            </div>
+        </div>
+
+        <div class="progress-row">
+            <span class="label">Low</span>
+            <div class="progress-bar">
+                <div class="progress-fill" id="fill-low">0%</div>
+            </div>
+        </div>
+
+        <button onclick="run_analysis()" id="btn-run-analysis">
+            Run analysis
+        </button>
+    </div>
+
+</section>
+
+<footer class="footer-class"></footer>
+
+<script type="module" src="./app.js"></script>
+
+</body>
+</html>
