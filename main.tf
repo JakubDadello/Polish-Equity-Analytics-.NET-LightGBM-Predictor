@@ -48,10 +48,23 @@ resource "azurerm_container_registry" "acr" {
   name                = "acr1stock1exchange1equity1analitycs"
   resource_group_name = azurerm_resource_group.psq.name
   location            = azurerm_resource_group.psq.location
-  sku                 = "Basic"  #with no georeplications
-  admin_enabled       = true  #set 
+  sku                 = "Standard"  #with no georeplications
+  admin_enabled       = false  #set 
 }
 
+# Azure User Assigned Identity (IAM equivalent )
+resource "azurerm_user_assigned_identity" "uai" {
+  name                = "aci-uai"
+  resource_group_name = azurerm_resource_group.psq.name
+  location            = azurerm_resource_group.psq.location
+}
+
+# Azure UAI Role Assignment (IAM Role equivalent )
+resource "azurerm_role_assignment" "aci_acr_pull" {
+  principal_id         = azurerm_user_assigned_identity.uai.principal_id
+  role_definition_name = "AcrPull"
+  scope = azurerm_container_registry.acr.id
+}
 
 # Azure Container Instances (ECS equivalent)
 resource "azurerm_container_group" "aci" {
@@ -63,8 +76,10 @@ resource "azurerm_container_group" "aci" {
   dns_name_label      = "stock-exchange-ea-inference" #public URL endpoint
 
   identity {
-    type = "SystemAssigned"
+    type = "UserAssigned"
+    identity_ids = [azurerm_user_assigned_identity.uai.id]
   }
+
   container {
     name   = "inference-api"
     image = "${azurerm_container_registry.acr.login_server}/azure-inference-api:latest"
@@ -76,20 +91,10 @@ resource "azurerm_container_group" "aci" {
       protocol = "TCP"  #transport protocol = TCP
     }
 
-  image_registry_credential {
-
-  }
-
     environment_variables = {
       "StorageConnectionString" = azurerm_storage_account.storage.primary_connection_string
     }
   }
-}
-
-resource "azurerm_role_assignment" "aci_acr_pull" {
-  principal_id         = azurerm_container_group.aci.identity[0].principal_id
-  role_definition_name = "AcrPull"
-  scope                = azurerm_container_registry.acr.id
 }
 
 # Azure Log Analytics Workspace (CloudWatch equivalent)
@@ -114,6 +119,7 @@ resource "azurerm_monitor_diagnostic_setting" "aci_diagnostics" {
   }
 }
 
+# Azure Storage Management Policy
 resource "azurerm_storage_management_policy" "retention" {
   storage_account_id = azurerm_storage_account.storage.id
 
