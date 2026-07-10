@@ -24,12 +24,12 @@
 # Resource group
 resource "azurerm_resource_group" "psq" {
   name     = "psq-stock-exchange-equity-analitycs"
-  location = "West Europe"
+  location = "Poland Central"
 }
 
 # Azure Blob Storage (S3 equivalent)
 resource "azurerm_storage_account" "storage" {
-    name  = "blob1stock1exchange1equity1analitycs"
+    name  = "blob1stock1exchange1ea"
     resource_group_name = azurerm_resource_group.psq.name #related to Resource Group by the name
     location = azurerm_resource_group.psq.location #related to Resource Group by the location
     account_tier = "Standard"
@@ -39,7 +39,7 @@ resource "azurerm_storage_account" "storage" {
 
 resource "azurerm_storage_container" "models" {
   name                  = "models"
-  storage_account_id    = azurerm_storage_account.storage.id
+  storage_account_name = azurerm_storage_account.storage.name
   container_access_type = "private"
 }
 
@@ -56,12 +56,15 @@ resource "azurerm_container_registry" "acr" {
 # Azure Container Instances (ECS equivalent)
 resource "azurerm_container_group" "aci" {
   name                = "aci-inference-app"
-  location            = azurerm_resource_group.psq.location
   resource_group_name = azurerm_resource_group.psq.name
+  location            = azurerm_resource_group.psq.location
   os_type             = "Linux"
   ip_address_type     = "Public"
-  dns_name_label      = "stock-exchange-equity-analitycs-inference" #public URL endpoint
+  dns_name_label      = "stock-exchange-ea-inference" #public URL endpoint
 
+  identity {
+    type = "SystemAssigned"
+  }
   container {
     name   = "inference-api"
     image = "${azurerm_container_registry.acr.login_server}/azure-inference-api:latest"
@@ -73,10 +76,20 @@ resource "azurerm_container_group" "aci" {
       protocol = "TCP"  #transport protocol = TCP
     }
 
+  image_registry_credential {
+
+  }
+
     environment_variables = {
       "StorageConnectionString" = azurerm_storage_account.storage.primary_connection_string
     }
   }
+}
+
+resource "azurerm_role_assignment" "aci_acr_pull" {
+  principal_id         = azurerm_container_group.aci.identity[0].principal_id
+  role_definition_name = "AcrPull"
+  scope                = azurerm_container_registry.acr.id
 }
 
 # Azure Log Analytics Workspace (CloudWatch equivalent)
@@ -94,23 +107,29 @@ resource "azurerm_monitor_diagnostic_setting" "aci_diagnostics" {
   target_resource_id         = azurerm_container_group.aci.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.logs.id
 
-  # Container logs
-  log {
-    category = "ContainerInstanceLogs"
-    enabled  = true
-
-    retention_policy {
-      enabled = false
-    }
-  }
-
   # Metrics
   metric {
     category = "AllMetrics"
     enabled  = true
+  }
+}
 
-    retention_policy {
-      enabled = false
+resource "azurerm_storage_management_policy" "retention" {
+  storage_account_id = azurerm_storage_account.storage.id
+
+  rule {
+    name    = "delete-old-logs"
+    enabled = true
+
+    filters {
+      prefix_match = ["logs"]
+      blob_types   = ["blockBlob"]
+    }
+
+    actions {
+      base_blob {
+        delete_after_days_since_modification_greater_than = 30
+      }
     }
   }
 }
